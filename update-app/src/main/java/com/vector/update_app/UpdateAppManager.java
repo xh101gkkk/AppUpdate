@@ -63,7 +63,7 @@ public class UpdateAppManager {
         mTopPic = builder.getTopPic();
 
         mIgnoreDefParams = builder.isIgnoreDefParams();
-        if(!mIgnoreDefParams) {
+        if (!mIgnoreDefParams) {
             mAppKey = builder.getAppKey();
         }
         mTargetPath = builder.getTargetPath();
@@ -157,7 +157,7 @@ public class UpdateAppManager {
 
         if (TextUtils.isEmpty(mTargetPath)
 //                || !mTargetPath.startsWith(preSuffix)
-                ) {
+        ) {
             Log.e(TAG, "下载路径错误:" + mTargetPath);
             return true;
         }
@@ -176,7 +176,7 @@ public class UpdateAppManager {
             Bundle bundle = new Bundle();
             //添加信息，
             fillUpdateAppData();
-            bundle.putSerializable(INTENT_KEY, mUpdateApp);
+//            bundle.putSerializable(INTENT_KEY, mUpdateApp);
             if (mThemeColor != 0) {
                 bundle.putInt(THEME_KEY, mThemeColor);
             }
@@ -186,7 +186,7 @@ public class UpdateAppManager {
             }
 
             UpdateDialogFragment
-                    .newInstance(bundle)
+                    .newInstance(mUpdateApp, bundle)
                     .setUpdateDialogFragmentListener(mUpdateDialogFragmentListener)
                     .show(((FragmentActivity) mActivity).getSupportFragmentManager(), "dialog");
 
@@ -228,7 +228,7 @@ public class UpdateAppManager {
 
         //拼接参数
         Map<String, String> params = new HashMap<String, String>();
-        if(!mIgnoreDefParams) {
+        if (!mIgnoreDefParams) {
             if (!TextUtils.isEmpty(mAppKey)) {
                 params.put("appKey", mAppKey);
             }
@@ -525,7 +525,8 @@ public class UpdateAppManager {
         }
 
         /**
-         *  设置默认的UpdateDialogFragment监听器
+         * 设置默认的UpdateDialogFragment监听器
+         *
          * @param updateDialogFragmentListener updateDialogFragmentListener 更新对话框关闭监听
          * @return Builder
          */
@@ -570,7 +571,6 @@ public class UpdateAppManager {
 
         /**
          * 是否隐藏对话框下载进度条
-         *
          *
          * @return Builder
          */

@@ -84,9 +84,13 @@ public class UpdateDialogFragment extends DialogFragment implements View.OnClick
         return this;
     }
 
+    public void setmUpdateApp(UpdateAppBean mUpdateApp) {
+        this.mUpdateApp = mUpdateApp;
+    }
 
-    public static UpdateDialogFragment newInstance(Bundle args) {
+    public static UpdateDialogFragment newInstance(UpdateAppBean mUpdateApp, Bundle args) {
         UpdateDialogFragment fragment = new UpdateDialogFragment();
+        fragment.setmUpdateApp(mUpdateApp);
         if (args != null) {
             fragment.setArguments(args);
         }
@@ -102,7 +106,6 @@ public class UpdateDialogFragment extends DialogFragment implements View.OnClick
 
 
         mActivity = getActivity();
-
 
 
     }
@@ -181,7 +184,7 @@ public class UpdateDialogFragment extends DialogFragment implements View.OnClick
     }
 
     private void initData() {
-        mUpdateApp = (UpdateAppBean) getArguments().getSerializable(UpdateAppManager.INTENT_KEY);
+//        mUpdateApp = (UpdateAppBean) getArguments().getSerializable(UpdateAppManager.INTENT_KEY);
         //设置主题色
         initTheme();
 
